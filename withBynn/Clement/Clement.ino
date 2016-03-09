@@ -49,7 +49,7 @@ void loop(){
   allOff(200 + 200 + 200 + 967);
   allOn(3210);
   allOff(1175);
-  alOn(100);
+  allOn(100);
   allOff(223 + 100 + 284);
   strobeParts(4141 / 500, 2);
   allOff(705);
