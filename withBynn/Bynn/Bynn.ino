@@ -42,5 +42,24 @@ void strobeParts(int cycles, int start){
 }
 
 void loop(){
-  delay(60000);//restarts after 1 min
+  strobeFull(3577 / 50);
+  delay(27);
+  allOn(377 + 1564 + 841);
+  strobeFull(2874 / 50);
+  allOn(6352 + 200 + 200);
+  allOff(200 + 200 + 967 + 3210);
+  allOn(1175 + 100 + 223 + 100 + 284);
+  strobeParts(4141 / 200, 2);
+  delay(141);
+  allOn(705 + 493);
+  allOff(4671 + 6249 + 3724);
+  
+  digitalWrite(LG, HIGH);
+  delay(523);
+  digitalWrite(RA, HIGH);
+  digitalWrite(LA, HIGH);
+  digitalWrite(CH, HIGH);
+  delay(120000);
+  
+  allOff(60000);//restarts after 1 min
 }
