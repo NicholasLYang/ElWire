@@ -1,5 +1,5 @@
 int LA = 2;
-int CH = 6;//PORT B DOES NOT WORK SUBSITUTED PORT E
+int CH = 3;
 int RA = 4;
 int LG = 5;
 int LEDPINS[] = {LA, CH, RA, LG};
@@ -19,7 +19,6 @@ void testWires(){
   allOff();
 }
 
-
 void allOn(){ for(int i = 0; i < sizeof(LEDPINS); i++){ digitalWrite(LEDPINS[i], HIGH); } }
 void allOff(){ for(int i = 0; i < sizeof(LEDPINS); i++){ digitalWrite(LEDPINS[i], LOW); } }
 
@@ -28,7 +27,6 @@ void strobeFull(int cycles){
   for (int i = 0; i <= cycles; i++){
     allOff();
     delay(25);
-
     allOn();
     delay(25);
   }
@@ -40,7 +38,6 @@ void strobeParts(int cycles, int start){
     for(int PIN = start; PIN < start + sizeof(LEDPINS); PIN++){
       digitalWrite(LEDPINS[ PIN % sizeof(LEDPINS) ] , HIGH);
       delay(25);
-      
       digitalWrite(LEDPINS[ PIN % sizeof(LEDPINS) ], LOW);
       delay(25);
     }
@@ -48,52 +45,35 @@ void strobeParts(int cycles, int start){
 }
 
 void loop() {
-  delay(3558);
-
+  delay(3577 + 377 + 1564);
   allOn();
-
-  delay(667);
-
+  delay(841);
+  
+  strobeFull(2874 / 50);//Yay integer division
+  delay(24);
+  
+  allOn();
+  delay(6352 + 200 + 200 + 200);
+  
   allOff();
-
-  delay(750);
-
+  delay(1167 + 3210 + 1175 + 100 + 223);
+  
   allOn();
-
-  delay(750);
-
-  allOff();
-
-  delay(750);
-
-  allOn();
-
-  delay(3800);
-
-  strobeFull(17);
-
-  allOff();
-  delay(150);
-
-  allOn();
-
-  delay(8277);
-
-  allOff();
-
-  delay(5702);
-
-  allOn();
-
   delay(100);
-
+  
   allOff();
-
-  delay(718);
-
-  strobeParts(28, CH);
-
+  delay(284);
+  
+  strobeParts(4141 / 200, 2);
+  
+  allOff();
+  delay(705 + 493);
+  
   allOn();
-
+  delay(4671);
+  
+  strobeFull(6249 / 50); //32144
+  
+  allOff();  
   delay(60000);
 }
