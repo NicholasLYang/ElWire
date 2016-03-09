@@ -1,7 +1,7 @@
-int LA = 2;
-int CH = 3;
-int RA = 4;
-int LG = 5;
+int LA = 2; // Left Arm
+int CH = 3; // Chest Head
+int RA = 4; // Right Arm
+int LG = 5; // Legs
 
 void setup() {
   pinMode(CH, OUTPUT);
@@ -31,6 +31,10 @@ void strobeFull(int cycles){
 
 //cycle lasts 200ms
 void strobeParts(int cycles, int start){
+  digitalWrite(CH, LOW);
+  digitalWrite(LA, LOW);
+  digitalWrite(RA, LOW);
+  digitalWrite(LG, LOW);
   int x = start - 2;
   for (int i = 0; i <= cycles; i++){
     digitalWrite(x, HIGH);
@@ -53,77 +57,76 @@ void strobeParts(int cycles, int start){
 }
 
 void loop() {
-  delay(9105);
+  delay(9161);
   
   digitalWrite(CH, HIGH);
   digitalWrite(LA, HIGH);
   digitalWrite(RA, HIGH);
   digitalWrite(LG, HIGH);
 
-  delay(1170);
+  delay(840);
 
-  strobeFull(17);
-
-  digitalWrite(CH, LOW);
-  digitalWrite(LA, LOW);
-  digitalWrite(RA, LOW);
-  digitalWrite(LG, LOW);
-
-  delay(150);
+  strobeFull(57); // <Num * 50 = however many milliseconds = 2874
 
   digitalWrite(CH, HIGH);
   digitalWrite(LA, HIGH);
   digitalWrite(RA, HIGH);
   digitalWrite(LG, HIGH);
 
-  delay(7877);
+  delay(6352); // 12.876 - 19.228
 
   digitalWrite(CH, LOW);
   digitalWrite(LA, LOW);
   digitalWrite(RA, LOW);
   digitalWrite(LG, LOW);
 
-  delay(620);
+  delay(600); //19.228 - 19.828
 
   digitalWrite(CH, HIGH);
   digitalWrite(LA, HIGH);
   digitalWrite(RA, HIGH);
   digitalWrite(LG, HIGH);
 
-  delay(2986);
+  delay(1167 + 3210);//19.828 - 24.205
 
   digitalWrite(CH, LOW);
   digitalWrite(LA, LOW);
   digitalWrite(RA, LOW);
   digitalWrite(LG, LOW);
 
-  delay(2893);
+  delay(1175 + 100 + 223);
 
   digitalWrite(CH, HIGH);
   digitalWrite(LA, HIGH);
   digitalWrite(RA, HIGH);
   digitalWrite(LG, HIGH);
 
-  delay(10);
+  delay(100); // 25.701
 
   digitalWrite(CH, LOW);
   digitalWrite(LA, LOW);
   digitalWrite(RA, LOW);
   digitalWrite(LG, LOW);
 
-  strobeParts(28, LG);
+  delay(284); 
+  
+  strobeParts(20, LG); // Num * 200 = 4141 26.085
 
   digitalWrite(CH, LOW);
   digitalWrite(LA, LOW);
   digitalWrite(RA, LOW);
   digitalWrite(LG, LOW);
 
-  delay(367);
+  delay(705 + 493);
 
   digitalWrite(CH, HIGH);
   digitalWrite(LA, HIGH);
   digitalWrite(RA, HIGH);
   digitalWrite(LG, HIGH);
   
-  delay(60000);
+  delay(4671);
+  
+  strobeFull(32); // Num * 50 = 6249
+  
+  
 }  
