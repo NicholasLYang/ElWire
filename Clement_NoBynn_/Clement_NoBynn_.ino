@@ -1,60 +1,52 @@
-int LA = 2;
+int LA = 6;//BAD PORT A
 int CH = 3;
 int RA = 4;
 int LG = 5;
+int LEDPINS[] = {LA, CH, RA, LG};
 
 void setup() {
   pinMode(CH, OUTPUT);
-  pinMode(LA, OUTPUT);  
+  pinMode(LA, OUTPUT);
   pinMode(RA, OUTPUT);
   pinMode(LG, OUTPUT);
+
+  testWires();
 }
+
+void testWires(){
+  allOn();
+  delay(250);
+  allOff();
+}
+
+void allOn(){ for(int i = 0; i < sizeof(LEDPINS); i++){ digitalWrite(LEDPINS[i], HIGH); } }
+void allOff(){ for(int i = 0; i < sizeof(LEDPINS); i++){ digitalWrite(LEDPINS[i], LOW); } }
 
 //cycle lasts 50ms
 void strobeFull(int cycles){
-  for (int i = 0; i <= cycles; i++){ 
-    digitalWrite(CH, LOW);  
-    digitalWrite(LG, LOW); 
-    digitalWrite(LA, LOW); 
-    digitalWrite(RA, LOW);
-
+  for (int i = 0; i <= cycles; i++){
+    allOff();
     delay(25);
-
-    digitalWrite(CH, HIGH); 
-    digitalWrite(LG, HIGH); 
-    digitalWrite(LA, HIGH); 
-    digitalWrite(RA, HIGH);
-
+    allOn();
     delay(25);
   }
 }
 
-//cycle lasts 200ms
+//cycle lasts 200ms, start is int that indicates which indice of LEDPINS to start iterating from
 void strobeParts(int cycles, int start){
-  int x = start - 2;
-  for (int i = 0; i <= cycles; i++){
-    digitalWrite(x, HIGH);
-    delay(25);
-    digitalWrite(x, LOW);
-    delay(25);
-    digitalWrite((x+1)%4, HIGH);
-    delay(25);
-    digitalWrite((x+1)%4, LOW);
-    delay(25);
-    digitalWrite((x+2)%4, HIGH);
-    delay(25);
-    digitalWrite((x+2)%4, LOW);
-    delay(25);
-    digitalWrite((x+3)%4, HIGH);
-    delay(25);
-    digitalWrite((x+3)%4, LOW);
-    delay(25);  
-  } 
+  for (int cycle = 0; cycle <= cycles; cycle++){
+    for(int PIN = start; PIN < start + sizeof(LEDPINS); PIN++){
+      digitalWrite(LEDPINS[ PIN % sizeof(LEDPINS) ] , HIGH);
+      delay(25);
+      digitalWrite(LEDPINS[ PIN % sizeof(LEDPINS) ], LOW);
+      delay(25);
+    }
+  }
 }
 
 void loop() {
   delay(3558);
-  
+
   digitalWrite(CH, HIGH);
   digitalWrite(LA, HIGH);
   digitalWrite(RA, HIGH);
@@ -73,7 +65,7 @@ void loop() {
   digitalWrite(LA, HIGH);
   digitalWrite(RA, HIGH);
   digitalWrite(LG, HIGH);
-  
+
   delay(750);
 
   digitalWrite(CH, LOW);
@@ -117,7 +109,7 @@ void loop() {
   digitalWrite(LA, HIGH);
   digitalWrite(RA, HIGH);
   digitalWrite(LG, HIGH);
-  
+
   delay(2569);
 
   digitalWrite(CH, LOW);
@@ -148,5 +140,5 @@ void loop() {
   digitalWrite(RA, HIGH);
   digitalWrite(LG, HIGH);
 
-  delay(60000); 
+  delay(60000);
 }
