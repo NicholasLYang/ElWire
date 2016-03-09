@@ -1,5 +1,5 @@
 int LA = 2;
-int CH = 3;
+int CH = 6;//PORT B DOES NOT WORK SUBSITUTED PORT E
 int RA = 4;
 int LG = 5;
 int LEDPINS[] = {LA, CH, RA, LG};

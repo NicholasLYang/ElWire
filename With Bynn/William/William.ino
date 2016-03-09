@@ -1,4 +1,4 @@
-int LA = 2;
+int LA = 6;// port a broken
 int CH = 3;
 int RA = 4;
 int LG = 5;

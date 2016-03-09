@@ -42,5 +42,19 @@ void strobeParts(int cycles, int start){
 }
 
 void loop(){
+  delay(3577 + 377 + 1564);
+  allOn(841);
+  strobeFull(2874 / 50);
+  delay(24);
+  allOn(6352 + 200 + 200 + 200 + 200);
+  allOff(967 + 3210 + 1175 + 100 + 223);
+  allOn(100);
+  allOff(284);
+  strobeParts( 4141 / 200, 2);
+  delay(141);
+  allOff(705 + 493);
+  allOn(4671);
+  strobeFull( (3724 + 523) / 50);
+  
   delay(60000);//restarts after 1 min
 }

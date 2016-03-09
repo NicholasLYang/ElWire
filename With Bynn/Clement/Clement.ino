@@ -1,4 +1,4 @@
-int LA = 2;
+int LA = 6;//port a broken
 int CH = 3;
 int RA = 4;
 int LG = 5;
@@ -40,7 +40,6 @@ void strobeParts(int cycles, int start){
     }
   }
 }
-
 void loop(){
   delay(60000);//restarts after 1 min
 }
