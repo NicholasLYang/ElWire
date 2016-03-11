@@ -1,8 +1,7 @@
-int LA = 2;
-int CH = 6;//PORT B DOES NOT WORK SUBSITUTED PORT E
-int RA = 4;
-int LG = 5;
-int LEDPINS[] = {LA, CH, RA, LG};
+/* Johhnys port B is broken! Substituted port E */
+int LARM = 2, CHST = 6,
+    RARM = 4, LEGS = 5;
+int LEDPINS[] = {LARM, CHST, RARM, LEGS};
 #define NUMPINS 4
 
 void setup() {
@@ -10,6 +9,12 @@ void setup() {
 //  testPins();
 }
 void loop(){
+  allSync();
+//  uniqueLights();
+  delay(60000);//restarts after 1 min
+}
+//============begin unique functions============================
+void uniqueLights(){
   delay(3577 + 377);
   allOn(1564 + 841);
   strobeAll(2874);
@@ -18,14 +23,24 @@ void loop(){
   allOn(100);
   allOff(223 + 100 + 284);
   strobeParts(4141);
-  delay(141);
   allOff(705);
   allOn(493 + 4671 + 6249);
   strobeAll(3724 + 523);
   allOff(20);
-  delay(60000);//restarts after 1 min
 }
-
+//============end timing functions==============================
+//============begin timing functions============================
+void allSync(){
+  slowFlicker(6300);// 0:00 - 6:30 
+  allOn(4150);// 6:30 - 10:45
+  strobeAll(1210);//10:45 - 11:66
+  allOn(4510);//11:66 - 16:17
+  strobeAll(8300);//16:17 - 17:00
+  strobeParts(12520);//17:00 - 29:52
+  slowFlicker(8480);//29:52 - 38:00
+  allOn(300000);//38:00 - end
+}
+//============end timing functions==============================
 //============begin setup functions=============================
 void setPins(){
   for(int PININDEX = 0; PININDEX < NUMPINS; PININDEX++){
@@ -64,7 +79,7 @@ void allOff(int timeOff){// Turns every PIN off->delay->leaves off
   delay(timeOff);
 }
 void strobeAll(int duration){// FLICKERS ALL PINS - pls make strobeperiod even
-  int strobePeriod = 500;//ms -> REMEMBER PERIOD IS ONE COMPLETE CYCLE!
+  int strobePeriod = 400;//ms -> REMEMBER PERIOD IS ONE COMPLETE CYCLE!
   int overlapTime = duration % strobePeriod;
   for(int currcycle = 0; currcycle < duration / strobePeriod; currcycle++){
     allOn(strobePeriod / 2);
@@ -83,6 +98,17 @@ void strobeParts(int duration){//Flickers different body parts at different inte
       delay(singleFlickerPeriod);
       digitalWrite( LEDPINS[ PININDEX ], LOW);
     }
+  }
+  allOn(overlapTime);
+  allOff();
+}
+void slowFlicker(int duration){
+  int strobeOn = 300;
+  int strobeOff = 100;
+  int overlapTime = duration % (strobeOn + strobeOff);
+  for(int currcycle = 0; currcycle < duration / (strobeOn + strobeOff); currcycle++){
+    allOn(strobeOn);
+    allOff(strobeOff);  
   }
   allOn(overlapTime);
   allOff();

@@ -1,8 +1,7 @@
-int LA = 2;
-int CH = 3;
-int RA = 4;
-int LG = 5;
-int LEDPINS[] = {LA, CH, RA, LG};
+// JACES BOARD HAS NO BROKEN PORTS
+int LARM = 2, RARM = 4,
+    CHST = 3, LEGS = 5;
+int LEDPINS[] = {LARM, CHST, RARM, LEGS};
 #define NUMPINS 4
 
 void setup() {
