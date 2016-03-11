@@ -1,5 +1,5 @@
 int LA = 6;//BAD PORT A
-int CH = 3;
+int CH = 7;
 int RA = 4;
 int LG = 5;
 int LEDPINS[] = {LA, CH, RA, LG};
@@ -19,7 +19,12 @@ void testWires(){
   allOff();
 }
 
-void allOn(){ for(int i = 0; i < sizeof(LEDPINS); i++){ digitalWrite(LEDPINS[i], HIGH); } }
+void allOn(){ 
+  digitalWrite(LA, HIGH);
+  digitalWrite(CH, HIGH);  
+  digitalWrite(RA, HIGH);  
+  digitalWrite(LG, HIGH);    
+}
 void allOff(){ for(int i = 0; i < sizeof(LEDPINS); i++){ digitalWrite(LEDPINS[i], LOW); } }
 
 //cycle lasts 50ms
@@ -45,7 +50,7 @@ void strobeParts(int cycles, int start){
 }
 
 void loop() {
-  strobeFull(3577 / 50)// Integer division???!!! ey
+  strobeFull(3577 / 50);// Integer division???!!! ey
   delay(27);
   allOn();
   delay(377 + 1564 + 841);
